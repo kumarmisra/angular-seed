@@ -1,1 +1,94 @@
-<p>This is the partial for view 1.</p>
+<div class="container-fluid">
+<div class="row bg-primary">
+    <div class="col-md-2">&nbsp;</div>
+    <div class="col-md-8">        
+       <h1>UX Society Members</h1>
+    
+    </div>      
+     <div class="col-md-2">&nbsp;</div>
+ </div>
+     <div class="row">
+       &nbsp; 
+    </div>
+    
+<div class="row">
+    <div class="col-md-2">&nbsp;</div>
+  <div class="col-md-8">
+      <div class="inner-addon left-addon">
+    <i class="glyphicon glyphicon-search"></i>
+    <input type="text" class="form-control" placeholder="Search" ng-model="nameFilter">
+</div>
+      
+    </div>
+     <div class="col-md-2">&nbsp;</div>
+ </div>
+    <div class="row">
+       &nbsp; 
+    </div>
+<div class="row">
+     <div class="col-md-2">&nbsp;</div>
+   <div class="col-md-6"> 
+    <table class="table table-striped">
+    <thead>
+      <tr><th> Name</th>
+          <th> Occupation </th>
+          <th> Company</th>
+        </tr>
+    </thead>
+    
+       <tbody> 
+        
+      <tr ng-repeat="member in memberList | filter: searchFilter  | startFrom:currentPage*pageSize | limitTo:pageSize">
+        <td>
+            <a href="" ng-click="getDetail(member.id)">
+         {{member.firstName}}&nbsp;{{member.surname}}
+               </a>
+        </td>
+        <td> {{member.occupation}}</td>
+        <td>{{member.company}}</td>
+      </tr>
+    </tbody>
+  </table>
+<div class="pagination pagination-centered" ng-show="memberList.length">
+<ul class="pagination-controle pagination">
+ <li>
+  <button type="button" class="btn btn-primary" ng-disabled="currentPage == 0"
+ ng-click="currentPage=currentPage-1"> &lt; PREV</button>
+ </li>
+ <li>
+ <span>Page {{currentPage + 1}} of {{ numberOfPages()}}</span>
+ </li>
+ <li>
+ <button type="button" class="btn btn-primary"
+ ng-disabled="currentPage >= memberList.length/pageSize - 1"
+ ng-click="currentPage = currentPage+1">NEXT &gt;</button>
+ </li>
+</ul>
+</div>
+       
+       
+       
+    </div>
+    
+  <div class="col-md-2">
+      <form role="form">
+        <div class="form-group">
+            <h3> {{detail.firstName}}&nbsp;{{detail.surname}}</h3>
+        </div>
+        <div class="form-group">
+            <img ng-src="{{detail.portrait}}"/>
+        </div>
+        <div class="form-group">
+           <p class="form-control-static">{{detail.occupation}}</p>
+        </div>
+        <div class="form-group">
+            <p class="form-control-static">{{detail.company}}</p>
+        </div>
+        <div class="checkbox">
+             <p class="form-control-static">{{detail.motto}}</p>
+        </div>
+      </form>
+</div>
+     <div class="col-md-2">&nbsp;</div>
+</div>    
+</div>
